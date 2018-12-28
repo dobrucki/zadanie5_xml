@@ -1,0 +1,8 @@
+text {
+  font: 24px sans-serif;
+}
+#restart:hover {
+  fill: red;
+  font: 30px;
+  cursor: pointer;
+}
