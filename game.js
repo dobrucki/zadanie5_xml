@@ -8,6 +8,9 @@ let circle = {
   color: "green",
   r: 40
 };
+cs.cx = Math.random() * (1000 - 2 * (circle.r + 4)) + circle.r + 4;
+cs.cy = Math.random() * (600 - 2 * (circle.r + 4)) + circle.r + 4;
+cs.r = Math.floor(Math.random() * 30 + 10);
 let points = 0;
 let time = 2000;
 let flag = true;
@@ -17,25 +20,30 @@ const skip = event => {
     points += 1;
     flag = false;
   } else points -= 1;
+  cs.r = 0;
 };
 
 const finish = () => {
   clearInterval(timerId);
+  cs.r = 0;
   circ.removeEventListener("click", skip);
-  console.log("Punkty " + points);
+  document.getElementById("points").innerHTML =
+    "Gra skonczona, punkty: " + points + "/" + iterator;
+  document.getElementById("restart").innerHTML = "Restart?";
+  document.getElementById("restart").addEventListener("click", setUp);
 };
 
 const render = () => {
   circle.x = Math.floor(
-    Math.random() * (800 - 2 * (circle.r + 4)) + circle.r + 4
+    Math.random() * (1000 - 2 * (circle.r + 4)) + circle.r + 4
   );
   circle.y = Math.floor(
-    Math.random() * (600 - 2 * (circle.r + 4)) + circle.r + 4
+    Math.random() * (800 - 2 * (circle.r + 4)) + circle.r + 4
   );
   circle.color = "green";
   if (Math.floor(Math.random() > 0.5)) circle.color = "red";
   if (cs.fill === "red") iterator += 1;
-  circle.r = Math.floor(Math.random() * 20 + 20);
+  circle.r = Math.floor(Math.random() * 30 + 10);
 
   cs.cx = circle.x;
   cs.cy = circle.y;
@@ -47,6 +55,13 @@ const render = () => {
 };
 
 const setUp = () => {
+  document.getElementById("points").innerHTML = "";
+  document.getElementById("restart").innerHTML = "";
+  iterator = 0;
+  timerId = null;
+  points = 0;
+  time = 2000;
+  flag = true;
   circ.addEventListener("click", skip);
   timerId = setInterval(render, time);
 };
