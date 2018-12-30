@@ -8,8 +8,8 @@ let circle = {
   color: "green",
   r: 40
 };
-cs.cx = Math.random() * (1000 - 2 * (circle.r + 4)) + circle.r + 4;
-cs.cy = Math.random() * (600 - 2 * (circle.r + 4)) + circle.r + 4;
+cs.cx = Math.random() * (1000 - 2 * circle.r) + circle.r;
+cs.cy = Math.random() * (600 - 2 * circle.r) + circle.r;
 cs.r = Math.floor(Math.random() * 30 + 10);
 let points = 0;
 let time = 2000;
@@ -34,14 +34,10 @@ const finish = () => {
 };
 
 const render = () => {
-  circle.x = Math.floor(
-    Math.random() * (1000 - 2 * (circle.r + 4)) + circle.r + 4
-  );
-  circle.y = Math.floor(
-    Math.random() * (800 - 2 * (circle.r + 4)) + circle.r + 4
-  );
+  circle.x = Math.floor(Math.random() * (1000 - 2 * circle.r) + circle.r);
+  circle.y = Math.floor(Math.random() * (600 - 2 * circle.r) + circle.r);
   circle.color = "green";
-  if (Math.floor(Math.random() > 0.5)) circle.color = "red";
+  if (Math.random() > 0.5) circle.color = "red";
   if (cs.fill === "red") iterator += 1;
   circle.r = Math.floor(Math.random() * 30 + 10);
 
@@ -51,7 +47,7 @@ const render = () => {
   cs.r = circle.r;
   flag = true;
 
-  if (iterator === 2) finish();
+  if (iterator === 5) finish();
 };
 
 const setUp = () => {

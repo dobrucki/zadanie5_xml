@@ -6,3 +6,6 @@ text {
   font: 30px;
   cursor: pointer;
 }
+#circ:hover {
+  cursor: pointer;
+}
